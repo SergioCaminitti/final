@@ -32,22 +32,22 @@
               </tr>
             </thead>
             <tbody>
-              <% @admin_orders.each do |o| %>
-                <tr class="bg-gray-50 border-b">
-                  <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-800 underline">
-                    <%= lint_to o.id, [:admin, o], class:"undeline" %>
-                  </td>
-                  <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-800 underline">
-                    <%= o.cutomer_email %>
-                  </td>
-                  <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-800">
-                    <%= o.adress %>
-                  </td>
-                  <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-800">
-                    R$ <%= o.total %>
-                  </td>
-                </tr>
-              <% end %>
+                <% @admin_orders.each do |o| %>
+                    <tr class="bg-gray-50 border-b">
+                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-800 underline">
+                        <%= link_to o.id, [:admin, o], class: 'underline' %>
+                        </td>
+                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-800">
+                        <%= o.customer_email %>
+                        </td>
+                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-800">
+                        <%= o.address %>
+                        </td>
+                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-800">
+                        R$ <%= o.total %>
+                        </td>
+                    </tr>
+                <% end %>
             </tbody>
           </table>
         </div>
