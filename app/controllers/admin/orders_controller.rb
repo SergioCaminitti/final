@@ -3,7 +3,9 @@ class Admin::OrdersController < AdminController
 
   # GET /admin/orders or /admin/orders.json
   def index
-    @admin_orders = Order.all
+    # @admin_orders = Order.all
+    @not_flufilled_orders = Order.where(fullfiled: false).order(created_at: :asc)
+    @flufilled_orders = Order.where(fullfiled: true).order(created_at: :asc)
   end
 
   # GET /admin/orders/1 or /admin/orders/1.json
@@ -38,7 +40,7 @@ class Admin::OrdersController < AdminController
   def update
     respond_to do |format|
       if @admin_order.update(admin_order_params)
-        format.html { redirect_to @admin_order, notice: "Order was successfully updated." }
+        format.html { redirect_to admin_order_url(@admin_order), notice: "Order was successfully updated." }
         format.json { render :show, status: :ok, location: @admin_order }
       else
         format.html { render :edit, status: :unprocessable_entity }
