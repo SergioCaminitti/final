@@ -7,66 +7,62 @@
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= yield :head %>
-
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   </head>
-
   <body>
     <main class="flex">
-        <nav class="flex w-56">
-            <div class="w-64 p-4 h-screen bg-gray-600 sticky top-0">
-                <div class="flex">
-                    <%= image_tag "food.jpg", class: 'w-16' %>
-                    <h1 class="text-md py-2 text-gray-50 font-bold hidden md:block">FoodApp</h1>
-                </div>
-                <ul class="flex flex-col text-gray-50">
-                    <li>
-                        <%= link_to admin_root_path, class:"block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
-                            <%= icon('fa-solid', 'gauge-high') %>
-                            <span class="hidden md:inline-block">Dashboard</span>
-                        <% end %>
-                    </li>
-                    <li>
-                        <%= link_to admin_products_path, class:"block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
-                            <%= icon('fa-solid', 'cart-shopping') %>
-                            <span class="hidden md:inline-block">Product</span>
-                        <% end %>
-                    </li>
-                    <li>
-                        <%= link_to admin_categories_path, class:"block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
-                            <%= icon('fa-solid', 'list') %>
-                            <span class="hidden md:inline-block">Categories</span>
-                        <% end %>
-                    </li>
-                    <li>
-                        <%= link_to admin_orders_path, class:"block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
-                            <%= icon('fa-solid', 'truck-fast') %>
-                            <span class="hidden md:inline-block">Orders</span>
-                        <% end %>
-                    </li>
-                    <li>
-                        <%= link_to destroy_admin_session_path, data:{"turbo-method": "delete", "turbo-confirm": "Deseja sair do sistema?"}, class:"block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
-                            <%= icon('fa-solid', 'sign-out') %>
-                            <span class="hidden md:inline-block">Logout</span>
-                        <% end %>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div class="w-full p-8">
-            <%= yield %>
+      <nav class="flex w-56">
+        <div class="w-64 p-4 h-screen bg-gray-600 sticky top-0">
+          <div class="flex items-center gap-4">
+            <%= image_tag "foodapp.png", class: 'w-16' %>
+            <h1 class="text-md py-2 text-gray-50 hidden md:block text-2xl">FoodApp</h1>
+          </div>
+          <ul class="flex flex-col text-gray-50">
+            <li>
+              <%= link_to admin_root_path, class:"block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
+                <%= icon('fa-solid', 'gauge-high') %>
+                <span class="hidden md:inline-block">Dashboard</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_products_path, class:"block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
+                <%= icon('fa-solid', 'cart-shopping') %>
+                <span class="hidden md:inline-block">Product</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_categories_path, class:"block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
+                <%= icon('fa-solid', 'list') %>
+                <span class="hidden md:inline-block">Categories</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_orders_path, class:"block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
+                <%= icon('fa-solid', 'truck-fast') %>
+                <span class="hidden md:inline-block">Orders</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_admin_session_path, data:{"turbo-method": "delete", "turbo-confirm": "Deseja sair do sistema?"}, class:"block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
+                <%= icon('fa-solid', 'sign-out') %>
+                <span class="hidden md:inline-block">Logout</span>
+              <% end %>
+            </li>
+          </ul>
         </div>
+      </nav>
+      <div class="w-full p-8">
+        <%= yield %>
+      </div>
     </main>
   </body>
 </html>
