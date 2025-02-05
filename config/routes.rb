@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :products, only: [ :show ]
 
   get "cart" => "carts#show"
+  post "checkout" => "checkouts#create"
 
   # A rota para admins autenticados
   authenticated :admin do
