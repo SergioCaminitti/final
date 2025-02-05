@@ -1,0 +1,59 @@
+<footer class="bg-gray-800 text-white">
+  <div class="max-2-pxl max-auto px-4 py-10 md:py-20">
+    <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+      <div class="space-y-8 xl:col-span-1">
+        <h3 class="text-sm font-semibold text-gray-200 tracking-wider uppercase">
+          Sobre o FoodApp
+        </h3>
+        <p class="text-white leading-6">
+          FoodApp - Tudo que vc precisa para o seu lanche
+        </p>
+      </div>
+      <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
+        <div class="md:grid md:grid-cols-3 md:gap-8">
+          <div>
+            <h3 class="text-sm font-semibold test-gray-200 tracking-wider uppercase">
+              Links
+            </h3>
+            <ul class="mt-4 space-4">
+              <li>
+                <%= link_to "Home", class:"test-base leading-6 text-white holver:text-gray-100" %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 mb-8 md:grid md:grid-cols-2 md:gap-8">
+        <div>
+          <h3 class="text-sm font-semibold tracking-wider uppercase text-gray-200">
+            Contato
+          </h3>
+          <ul class="mt-4 space-y-4">
+            <li>
+              <p class="text-base leading-6 text-white">
+                Test Food
+              </p>
+            </li>
+            <li>
+              <p class="text-base leading-6 text-white">
+                E-mail: support@test.com
+              </p>
+            </li>
+            <li>
+              <p class="text-base leading-6 text-white">
+                Phone: (16) 99999-9999
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-700">
+        <div class="max-w-6x1 mx-auto px-4 py-6 md:flex md:items-center ms:justify-between">
+          <p class="mt-6 text-base leading-6 text-gray-400 md:mt-0 md:order-1">
+            &copy; <%= Time.now.year %> FoodApp. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
