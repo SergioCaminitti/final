@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :categories, only: [ :show ]
   resources :products, only: [ :show ]
 
+  get "cart" => "carts#show"
+
   # A rota para admins autenticados
   authenticated :admin do
     root to: "admin#index", as: :admin_root
