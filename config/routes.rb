@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :categories
   end
   devise_for :admins
+  resources :categories, only: [ :show ]
 
   # A rota para admins autenticados
   authenticated :admin do
