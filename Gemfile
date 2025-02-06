@@ -69,3 +69,6 @@ gem 'font-awesome-sass', '~> 6.1'
 
 gem "devise", "~> 4.9"
 gem 'pg', '~> 1.5', '>= 1.5.9'
+
+gem "stripe"
+gem "dotenv-rails"

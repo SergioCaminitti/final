@@ -3,9 +3,9 @@ import { Controller } from "@hotwired/stimulus";
 // Connects to data-controller="cart"
 export default class extends Controller {
   initialize() {
-    const cart = JSON.parse(localStorage.getItem("cart"));
-    if (!cart) {
-      return;
+    const cart = JSON.parse(localStorage.getItem("cart")) || []; // Garante que cart seja um array
+    if (cart.length === 0) {
+      return; // Não faz nada se o carrinho estiver vazio
     }
 
     let total = 0;
@@ -32,14 +32,16 @@ export default class extends Controller {
     }
 
     const totalEl = document.createElement("div");
-    totalEl.innerText = `Total: ${total}`;
+    totalEl.innerText = `Total R$: ${total}`;
     let totalContainer = document.getElementById("total");
     totalContainer.appendChild(totalEl);
   }
+
   clear() {
     localStorage.removeItem("cart");
     window.location.reload();
   }
+
   removeFromCart(event) {
     const cart = JSON.parse(localStorage.getItem("cart"));
     const id = event.target.value;
@@ -55,22 +57,35 @@ export default class extends Controller {
       authenticity_token: "",
       cart: cart,
     };
+
     const csrfToken = document.querySelector("[name='csrf-token']").content;
     fetch("/checkout", {
       method: "POST",
       headers: {
-        "X-Content-Type": "application/json",
+        "Content-Type": "application/json",
         "X-CSRF-Token": csrfToken,
       },
       body: JSON.stringify(payload),
     }).then((response) => {
       if (response.ok) {
-        window.location.href = body.url;
+        response.json().then((data) => {
+          console.log(data); // Inspecionar a resposta
+          if (data.url) {
+            window.location.href = data.url; // Redireciona para a URL do Stripe
+          } else {
+            const errorEl = document.createElement("div");
+            errorEl.innerText = "Erro: URL do Stripe não encontrada.";
+            let errorContainer = document.getElementById("errorContainer");
+            errorContainer.appendChild(errorEl);
+          }
+        });
       } else {
-        const errorEl = document.createElement("div");
-        errorEl.innerText = "Erro ao processar pedido ${body.error}";
-        let errorContainer = document.getElementById("errorContainer");
-        errorContainer.appendChild(errorEl);
+        response.json().then((data) => {
+          const errorEl = document.createElement("div");
+          errorEl.innerText = `Erro ao processar seu pedido: ${data.error}`;
+          let errorContainer = document.getElementById("errorContainer");
+          errorContainer.appendChild(errorEl);
+        });
       }
     });
   }
