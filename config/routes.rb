@@ -7,19 +7,21 @@ Rails.application.routes.draw do
     resources :categories
   end
   devise_for :admins
-  root "home#index"
 
   authenticated :admin do
     root to: "admin#index", as: :admin_root
   end
 
+  get "admin" => "admin#index"
+  get "cart" => "carts#show"
+  post "checkout" => "checkouts#create"
+  get '/success', to: 'checkouts#success'
+  get '/cancel', to: 'checkouts#cancel'
+  post "webhooks" => "webhooks#stripe"
+
+
   resources :categories, only: [ :show ]
   resources :products, only: [ :show ]
 
-  get "cart" => "carts#show"
-
-  get "/success", to: "checkouts#success"
-  get "/cancel", to: "checkouts#cancel"
-
-  post "checkout" => "checkouts#create"
+  root "home#index"
 end
