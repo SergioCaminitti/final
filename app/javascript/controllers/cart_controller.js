@@ -33,7 +33,7 @@ export default class extends Controller {
 
     const totalEl = document.createElement("div");
     totalEl.innerText = `Total R$: ${total}`;
-    let totalContainer = document.getElementById("total");
+    const totalContainer = document.getElementById("total");
     totalContainer.appendChild(totalEl);
   }
 
@@ -75,7 +75,7 @@ export default class extends Controller {
           } else {
             const errorEl = document.createElement("div");
             errorEl.innerText = "Erro: URL do Stripe não encontrada.";
-            let errorContainer = document.getElementById("errorContainer");
+            const errorContainer = document.getElementById("errorContainer");
             errorContainer.appendChild(errorEl);
           }
         });
@@ -83,7 +83,7 @@ export default class extends Controller {
         response.json().then((data) => {
           const errorEl = document.createElement("div");
           errorEl.innerText = `Erro ao processar seu pedido: ${data.error}`;
-          let errorContainer = document.getElementById("errorContainer");
+          const errorContainer = document.getElementById("errorContainer");
           errorContainer.appendChild(errorEl);
         });
       }
